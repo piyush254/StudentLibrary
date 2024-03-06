@@ -11,7 +11,7 @@ public class Student {
     private String name;
     private String mobNumber;
     private String email;
-
+//    code checking
     private String City;
     // Name of variable in parent entity you have written in child class foreign key attribute
     @OneToOne(mappedBy = "studentVariableName", cascade = CascadeType.ALL)
