@@ -1,19 +1,29 @@
 package com.example.StudentManagement.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Student")
 public class Student {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int RollNumber;
     private String name;
     private String mobNumber;
+    private String email;
 
     private String City;
+    // Name of variable in parent entity you have written in child class foreign key attribute
+    @OneToOne(mappedBy = "studentVariableName", cascade = CascadeType.ALL)
+    private Card card;
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
 
     public int getRollNumber() {
         return RollNumber;
@@ -47,9 +57,10 @@ public class Student {
         City = city;
     }
 
-    public Student(int rollNumber, String name, String mobNumber, String city) {
+    public Student(int rollNumber, String name, String mobNumber, String city, String email) {
         RollNumber = rollNumber;
         this.name = name;
+        this.email = email;
         this.mobNumber = mobNumber;
         City = city;
     }
